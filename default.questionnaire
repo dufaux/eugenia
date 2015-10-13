@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questionnaire:Questionnaire xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:questionnaire="questionnaire">
+  <entree PremiereQuestion="//@questions.0"/>
+  <questions xsi:type="questionnaire:QuestionAChoixMultiple" question="Vous arrivez à l'orée d'une forêt. Où voulez-vous aller?">
+    <photo path="image/intersection.jpg"/>
+  </questions>
+  <questions xsi:type="questionnaire:QuestionAReponseNumerique" question="Un lutin vous demande quelques gorgées d'eau. Combien lui en donnez-vous?">
+    <photo path="image/lutin.jpg"/>
+  </questions>
+  <questions xsi:type="questionnaire:QuestionAReponseBoolean" question="Désaltéré, le lutin vous conseil de rebrousser chemin car un troll affamé se trouve plus loin sur le passage. &lt;br> Voulez-vous rebrousser chemin?" ReponseBooleanOui="//@questions.3" ReponseBooleanNon="//@sorties.2"/>
+  <questions xsi:type="questionnaire:QuestionAChoixMultiple" question="Vous revenez sur vos pas et retrouvez le carrefour initial"/>
+  <questions xsi:type="questionnaire:QuestionAChoixMultiple" question="Après une marche éreintante, vous arrivez devant une vielle bicoque abandonnée. &lt;br> Que faites-vous?">
+    <photo path="image/cabane.jpg"/>
+  </questions>
+  <questions xsi:type="questionnaire:QuestionAReponseBoolean" question="Vous tombez sur un coffre au fond de la pièce. Voulez-vous l'ouvrir?" ReponseBooleanOui="//@questions.6" ReponseBooleanNon="//@sorties.3">
+    <photo path="image/closedchest.png"/>
+  </questions>
+  <questions xsi:type="questionnaire:QuestionAReponseNumerique" question="Le coffre contient des milliers de pièce d'or, mais trois individus pénètrent dans la pièce. &lt;br> Vous pouvez fuir par l'arrière mais vous n'aurez pas le temps de tout emporter. Combien de pièces voulez-vous emporter?">
+    <photo path="image/openedchest.png"/>
+  </questions>
+  <relations xsi:type="questionnaire:ReponseNumeriqueSuperieurAttendu" nombre="30" previous2="//@questions.6" next2="//@sorties.5"/>
+  <relations xsi:type="questionnaire:ReponseNumeriqueInferieurAttendu" nombre="30" previous2="//@questions.6" next2="//@sorties.6"/>
+  <relations xsi:type="questionnaire:ReponseNumeriqueEgaleAttendu" nombre="30" previous2="//@questions.6" next2="//@sorties.6"/>
+  <relations xsi:type="questionnaire:ReponseMultipleAttendu" reponseAttendu="Rentrer dans la maison." previous1="//@questions.4" next1="//@questions.5"/>
+  <relations xsi:type="questionnaire:ReponseMultipleAttendu" reponseAttendu="Vous craignez un piège et décidez de vous reposer à l'éxterieur" previous1="//@questions.4" next1="//@sorties.4"/>
+  <relations xsi:type="questionnaire:ReponseMultipleAttendu" reponseAttendu="Vous rebroussez chemin" previous1="//@questions.4" next1="//@questions.0"/>
+  <relations xsi:type="questionnaire:ReponseMultipleAttendu" reponseAttendu="a droite" previous1="//@questions.0" next1="//@questions.4"/>
+  <relations xsi:type="questionnaire:ReponseMultipleAttendu" reponseAttendu="a gauche" previous1="//@questions.0" next1="//@sorties.0"/>
+  <relations xsi:type="questionnaire:ReponseMultipleAttendu" reponseAttendu="droit devant" previous1="//@questions.0" next1="//@questions.1"/>
+  <relations xsi:type="questionnaire:ReponseNumeriqueEgaleAttendu" previous2="//@questions.1" next2="//@sorties.1"/>
+  <relations xsi:type="questionnaire:ReponseNumeriqueSuperieurAttendu" previous2="//@questions.1" next2="//@questions.2"/>
+  <relations xsi:type="questionnaire:ReponseNumeriqueInferieurAttendu" previous2="//@questions.1" next2="//@sorties.1"/>
+  <relations xsi:type="questionnaire:ReponseMultipleAttendu" reponseAttendu="continuer" previous1="//@questions.3" next1="//@questions.0"/>
+  <sorties question="Un ours vous tue">
+    <photo path="image/grave.png"/>
+  </sorties>
+  <sorties question="Le lutin vous achève à coup de pelle.">
+    <photo path="image/grave.png"/>
+  </sorties>
+  <sorties question="Avant même de tomber sur le troll, vous trébuchez et tombez dans un ravin. &lt;br> Vous êtes mort.">
+    <photo path="image/grave.png"/>
+  </sorties>
+  <sorties question="Trois individus pénètrent dans la maison et vous tuent. ">
+    <photo path="image/grave.png"/>
+  </sorties>
+  <sorties question="Un loup vous dévore durant votre repos.">
+    <photo path="image/grave.png"/>
+  </sorties>
+  <sorties question="Vous êtes trop gourmand. Vous trébuchez et mourrez avec votre or.">
+    <photo path="image/grave.png"/>
+  </sorties>
+  <sorties question="Vous vous échappez plus riche qu'avant. Félicitations!">
+    <photo path="image/congratulations.jpg"/>
+  </sorties>
+</questionnaire:Questionnaire>

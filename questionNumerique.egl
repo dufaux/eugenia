@@ -1,0 +1,107 @@
+<HTML>
+<head>
+<meta charset="UTF-8">
+<style>
+h1{
+border: 1px solid black;
+margin: 100px 200px 10px;
+text-align: center;
+}
+
+p{
+margin: 100px 200px 10px;
+text-align: center;
+}
+
+ul{
+margin: 100px 200px 10px;
+text-align: center;
+list-style-type: none;
+}
+
+a{
+color: #000000 ;
+text-decoration: none;
+font-size: 150%;
+font-family: "Times New Roman", Times, serif;
+
+}
+a:hover {
+  color: #000099 ;
+  text-decoration: underline ;
+}
+
+img{
+  display: block;
+  margin: auto;
+}
+</style>
+</head>
+<BODY>
+
+<h1>[%=question.question%] </h1>
+<p>
+<label>Votre choix:</label><br>
+<input type="number" name="number" id="num" value="0">
+<input type="submit" value="Valider" id="bouton">
+</p>
+<p>
+
+[% if(question.photo.isDefined()){  %]
+    <img src="[%=question.photo.path%]" />
+[% } %]
+<a href="index.html">retour à l'accueil </a>
+</p>
+
+<script>
+
+
+function redirige() {
+    var num = document.getElementById("num").value;
+    [% for (rep in ReponseNumeriqueAttendu.all) {%]
+    [%=rep.creeRedirection(question)%]
+    [%}%]
+}
+   
+
+var bouton = document.getElementById("bouton"); 
+bouton.addEventListener("click", redirige, false); 
+
+</script> 
+</BODY>
+</HTML>
+
+[%
+
+operation ReponseNumeriqueAttendu creeRedirection(qst : Question) : String {
+    var code = "";
+	if(self.previous2.id == qst.id){
+		if(self.isTypeOf(ReponseNumeriqueInferieurAttendu)){
+		    code= code+" if(num < "+self.nombre+"){";
+		}
+		else if(self.isTypeOf(ReponseNumeriqueSuperieurAttendu)){
+	        code= code+" if(num > "+self.nombre+"){";
+		}
+		else if(self.isTypeOf(ReponseNumeriqueEgaleAttendu)){
+		    code= code+" if(num == "+self.nombre+"){";
+		}
+		else{
+		    return "";
+		}
+		
+		code= code+"document.location.href=\""+nettoyer_id(self.next2.id)+".html\"";
+		
+		code= code+"}";
+		
+		return code;
+		
+	}
+	return "";
+}
+
+operation nettoyer_id(id : String) : String {
+    return id.replace("@","").replace("/","").replace("\\.","");
+}
+
+
+%]

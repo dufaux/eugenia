@@ -1,0 +1,65 @@
+
+rule QuestMult
+  transform question : QuestionAChoixMultiple {
+  template : "question.egl"
+  target : "site/"+nettoyer_id(question.id)+ ".html"
+
+}
+rule QuestBool
+  transform question : QuestionAReponseBoolean {
+  template : "questionBoolean.egl"
+  target : "site/"+nettoyer_id(question.id)+ ".html"
+
+}
+rule QuestNum
+  transform question : QuestionAReponseNumerique {
+  template : "questionNumerique.egl"
+  target : "site/"+nettoyer_id(question.id)+ ".html"
+
+}
+
+
+rule Entree
+  transform entree : PageEntree {
+
+  template : "entree.egl"
+
+  target : "site/index.html"
+}
+
+rule Sortie
+  transform sortie : PageSortie {
+
+  template : "sortie.egl"
+
+  target : "site/"+nettoyer_id(sortie.id)+".html"
+}
+
+
+// ##########        AUTRE POSSIBILITE POUR AVOIR UN IDENTIFIANT UNIQUE      ##########
+// ##########  -chercher l'index de l'objet dans la collection CLASSNAME.all ##########
+/*
+rule Sortie
+  transform sortie : PageSortie {
+
+  parameters {
+    // These parameters will be made available
+    // to the invoked template as variables
+    var params : new Map;
+    params.put("identifiant", PageSortie.all.indexOf(sortie));
+    return params;
+  }
+  
+  
+  template : "sortie.egl"
+
+  target : "test/sortie"+PageSortie.all.indexOf(sortie)+".html"
+}
+*/
+
+
+
+
+operation nettoyer_id(id : String) : String {
+    return id.replace("@","").replace("/","").replace("\\.","");
+}

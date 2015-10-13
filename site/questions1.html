@@ -1,0 +1,74 @@
+<HTML>
+<head>
+<meta charset="UTF-8">
+<style>
+h1{
+border: 1px solid black;
+margin: 100px 200px 10px;
+text-align: center;
+}
+
+p{
+margin: 100px 200px 10px;
+text-align: center;
+}
+
+ul{
+margin: 100px 200px 10px;
+text-align: center;
+list-style-type: none;
+}
+
+a{
+color: #000000 ;
+text-decoration: none;
+font-size: 150%;
+font-family: "Times New Roman", Times, serif;
+
+}
+a:hover {
+  color: #000099 ;
+  text-decoration: underline ;
+}
+
+img{
+  display: block;
+  margin: auto;
+}
+</style>
+</head>
+<BODY>
+
+<h1>Un lutin vous demande quelques gorgées d'eau. Combien lui en donnez-vous? </h1>
+<p>
+<label>Votre choix:</label><br>
+<input type="number" name="number" id="num" value="0">
+<input type="submit" value="Valider" id="bouton">
+</p>
+<p>
+
+    <img src="image/lutin.jpg" />
+<a href="index.html">retour à l'accueil </a>
+</p>
+
+<script>
+
+
+function redirige() {
+    var num = document.getElementById("num").value;
+    
+    
+    
+     if(num == 0){document.location.href="sorties1.html"}
+     if(num > 0){document.location.href="questions2.html"}
+     if(num < 0){document.location.href="sorties1.html"}
+}
+   
+
+var bouton = document.getElementById("bouton"); 
+bouton.addEventListener("click", redirige, false); 
+
+</script> 
+</BODY>
+</HTML>
+
