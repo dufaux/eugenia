@@ -3,8 +3,9 @@
 <meta charset="UTF-8">
 <style>
 h1{
-border: 1px solid black;
-margin: 100px 200px 10px;
+border-radius: 10px;
+border: 10px ridge #272727;
+margin: 100px 500px 10px;
 text-align: center;
 }
 
@@ -31,38 +32,46 @@ a:hover {
   text-decoration: underline ;
 }
 
-form{
-  text-align: center;
-}
-
 img{
   display: block;
   margin: auto;
 }
-
-.bouton{
-  width: 200px;
-  height: 50px;
-  font-size: 25px;
-}
-
 </style>
 </head>
 <BODY>
 
-<h1>Vous tombez sur un coffre au fond de la pièce. Voulez-vous l'ouvrir? </h1>
-
-<form action="questions6.html">
-    <input class="bouton" type="submit" value="Oui">
-</form>
-<form action="sorties3.html">
-    <input class="bouton" type="submit" value="Non">
-</form>
-
-    <img src="image/closedchest.png" />
+<h1>Le coffre contient des milliers de pièce d'or, mais trois individus pénètrent dans la pièce. <br> Vous pouvez fuir par l'arrière mais vous n'aurez pas le temps de tout emporter. Combien de pièces voulez-vous emporter? </h1>
 <p>
+<label>Votre choix:</label><br>
+<input type="number" name="number" id="num" value="0">
+<input type="submit" value="Valider" id="bouton">
+</p>
+<p>
+
+    <img src="image/openedchest.png" />
 <a href="index.html">retour à l'accueil </a>
 </p>
+
+<script>
+
+var idpage = "questions5";
+var nompage = "Le coffre contient des milliers de pièce d'or, mais trois individus pénètrent dans la pièce. <br> Vous pouvez fuir par l'arrière mais vous n'aurez pas le temps de tout emporter. Combien de pièces voulez-vous emporter?";
+
+function redirige() {
+    var num = document.getElementById("num").value;
+     if(num > 30){var historique = JSON.parse(localStorage.getItem("historique")); historique.push([nompage,num]); localStorage.setItem("historique",JSON.stringify(historique));document.location.href="sorties5.html"}
+     if(num < 30){var historique = JSON.parse(localStorage.getItem("historique")); historique.push([nompage,num]); localStorage.setItem("historique",JSON.stringify(historique));document.location.href="sorties6.html"}
+     if(num == 30){var historique = JSON.parse(localStorage.getItem("historique")); historique.push([nompage,num]); localStorage.setItem("historique",JSON.stringify(historique));document.location.href="sorties6.html"}
+    
+    
+    
+}
+   
+
+var bouton = document.getElementById("bouton"); 
+bouton.addEventListener("click", redirige, false); 
+
+</script> 
 </BODY>
 </HTML>
 

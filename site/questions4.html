@@ -3,7 +3,8 @@
 <meta charset="UTF-8">
 <style>
 h1{
-border: 1px solid black;
+border-radius: 10px;
+border: 10px ridge #272727;
 margin: 100px 200px 10px;
 text-align: center;
 }
@@ -31,45 +32,50 @@ a:hover {
   text-decoration: underline ;
 }
 
+form{
+  text-align: center;
+}
+
 img{
   display: block;
   margin: auto;
+}
+
+.bouton{
+  width: 200px;
+  height: 50px;
+  font-size: 25px;
 }
 
 </style>
 </head>
 <BODY>
 
-<h1>Après une marche éreintante, vous arrivez devant une vielle bicoque abandonnée. <br> Que faites-vous? </h1>
+<h1>Vous tombez sur un coffre au fond de la pièce. Voulez-vous l'ouvrir? </h1>
 
-<ul>
+<form action="questions5.html">
+    <input class="bouton" type="submit" value="Oui" onclick='setLocalStorage("Oui");'>
+</form>
+<form action="sorties3.html">
+    <input class="bouton" type="submit" value="Non" onclick='setLocalStorage("Non");'>
+</form>
 
-<li> <a href="questions5.html">Rentrer dans la maison. </li>
-
-
-<li> <a href="sorties4.html">Vous craignez un piège et décidez de vous reposer à l'éxterieur </li>
-
-
-<li> <a href="questions0.html">Vous rebroussez chemin </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-</ul>
-
-    <img src="image/cabane.jpg" />
+    <img src="image/closedchest.png" />
 <p>
 <a href="index.html">retour à l'accueil </a>
 </p>
+
+<script>
+var nompage = "Vous tombez sur un coffre au fond de la pièce. Voulez-vous l'ouvrir?";
+
+function setLocalStorage(reponse){
+    var historique = JSON.parse(localStorage.getItem("historique"));
+    console.log("LENGTH HISTORIQUE + "+historique.length);
+	
+    historique.push([nompage,reponse]);
+	localStorage.setItem("historique",JSON.stringify(historique));
+}
+</script>
 </BODY>
 </HTML>
 

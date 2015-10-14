@@ -3,8 +3,9 @@
 <meta charset="UTF-8">
 <style>
 h1{
-border: 1px solid black;
-margin: 100px 200px 10px;
+border-radius: 10px;
+border: 10px ridge #272727;
+margin: 100px 500px 10px;
 text-align: center;
 }
 
@@ -39,29 +40,27 @@ img{
 </head>
 <BODY>
 
-<h1>Le coffre contient des milliers de pièce d'or, mais trois individus pénètrent dans la pièce. <br> Vous pouvez fuir par l'arrière mais vous n'aurez pas le temps de tout emporter. Combien de pièces voulez-vous emporter? </h1>
+<h1>Vous revenez sur vos pas et retrouvez le carrefour initial. <br> Comment vous sentez vous? </h1>
 <p>
-<label>Votre choix:</label><br>
-<input type="number" name="number" id="num" value="0">
+<input type="text" name="texte" id="texte" value="">
 <input type="submit" value="Valider" id="bouton">
 </p>
 <p>
 
-    <img src="image/openedchest.png" />
 <a href="index.html">retour à l'accueil </a>
 </p>
 
 <script>
 
+var idpage = "questions6";
+var nompage = "Vous revenez sur vos pas et retrouvez le carrefour initial. <br> Comment vous sentez vous?";
 
 function redirige() {
-    var num = document.getElementById("num").value;
-     if(num > 30){document.location.href="sorties5.html"}
-     if(num < 30){document.location.href="sorties6.html"}
-     if(num == 30){document.location.href="sorties6.html"}
-    
-    
-    
+    var reponse = document.getElementById("texte").value;
+    var historique = JSON.parse(localStorage.getItem("historique"));
+    historique.push([nompage,reponse]);
+	localStorage.setItem("historique",JSON.stringify(historique));
+    document.location.href="questions0.html";
 }
    
 

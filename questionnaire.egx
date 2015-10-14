@@ -17,6 +17,12 @@ rule QuestNum
   target : "site/"+nettoyer_id(question.id)+ ".html"
 
 }
+rule QuestOuv
+  transform question : QuestionOuverte {
+  template : "questionOuverte.egl"
+  target : "site/"+nettoyer_id(question.id)+ ".html"
+
+}
 
 
 rule Entree
@@ -27,6 +33,7 @@ rule Entree
   target : "site/index.html"
 }
 
+
 rule Sortie
   transform sortie : PageSortie {
 
@@ -34,28 +41,6 @@ rule Sortie
 
   target : "site/"+nettoyer_id(sortie.id)+".html"
 }
-
-
-// ##########        AUTRE POSSIBILITE POUR AVOIR UN IDENTIFIANT UNIQUE      ##########
-// ##########  -chercher l'index de l'objet dans la collection CLASSNAME.all ##########
-/*
-rule Sortie
-  transform sortie : PageSortie {
-
-  parameters {
-    // These parameters will be made available
-    // to the invoked template as variables
-    var params : new Map;
-    params.put("identifiant", PageSortie.all.indexOf(sortie));
-    return params;
-  }
-  
-  
-  template : "sortie.egl"
-
-  target : "test/sortie"+PageSortie.all.indexOf(sortie)+".html"
-}
-*/
 
 
 

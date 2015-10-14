@@ -3,8 +3,9 @@
 <meta charset="UTF-8">
 <style>
 h1{
-border: 1px solid black;
-margin: 100px 200px 10px;
+border-radius: 10px;
+border: 10px ridge #272727;
+margin: 100px 500px 10px;
 text-align: center;
 }
 
@@ -53,15 +54,17 @@ img{
 
 <script>
 
+var idpage = "questions1";
+var nompage = "Un lutin vous demande quelques gorgées d'eau. Combien lui en donnez-vous?";
 
 function redirige() {
     var num = document.getElementById("num").value;
     
     
     
-     if(num == 0){document.location.href="sorties1.html"}
-     if(num > 0){document.location.href="questions2.html"}
-     if(num < 0){document.location.href="sorties1.html"}
+     if(num == 0){var historique = JSON.parse(localStorage.getItem("historique")); historique.push([nompage,num]); localStorage.setItem("historique",JSON.stringify(historique));document.location.href="sorties1.html"}
+     if(num > 0){var historique = JSON.parse(localStorage.getItem("historique")); historique.push([nompage,num]); localStorage.setItem("historique",JSON.stringify(historique));document.location.href="questions2.html"}
+     if(num < 0){var historique = JSON.parse(localStorage.getItem("historique")); historique.push([nompage,num]); localStorage.setItem("historique",JSON.stringify(historique));document.location.href="sorties1.html"}
 }
    
 

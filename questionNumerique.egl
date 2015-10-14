@@ -3,8 +3,9 @@
 <meta charset="UTF-8">
 <style>
 h1{
-border: 1px solid black;
-margin: 100px 200px 10px;
+border-radius: 10px;
+border: 10px ridge #272727;
+margin: 100px 500px 10px;
 text-align: center;
 }
 
@@ -55,6 +56,8 @@ img{
 
 <script>
 
+var idpage = "[%=nettoyer_id(question.id)%]";
+var nompage = "[%=question.question%]";
 
 function redirige() {
     var num = document.getElementById("num").value;
@@ -88,7 +91,9 @@ operation ReponseNumeriqueAttendu creeRedirection(qst : Question) : String {
 		else{
 		    return "";
 		}
-		
+		code= code+"var historique = JSON.parse(localStorage.getItem(\"historique\")); ";
+    	code= code+"historique.push([nompage,num]); ";
+		code= code+"localStorage.setItem(\"historique\",JSON.stringify(historique));";
 		code= code+"document.location.href=\""+nettoyer_id(self.next2.id)+".html\"";
 		
 		code= code+"}";

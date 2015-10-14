@@ -3,8 +3,9 @@
 <meta charset="UTF-8">
 <style>
 h1{
-border: 1px solid black;
-margin: 100px 200px 10px;
+border-radius: 10px;
+border: 10px ridge #272727;
+margin: 100px 500px 10px;
 text-align: center;
 }
 
@@ -56,6 +57,17 @@ img{
 <p>
 <a href="index.html">retour à l'accueil </a>
 </p>
+<script>
+
+var idpage = "[%=nettoyer_id(question.id)%]";
+var nompage = "[%=question.question%]";
+var historique = JSON.parse(localStorage.getItem("historique"));
+function setLocalStorage(reponse){
+    var historique = JSON.parse(localStorage.getItem("historique"));
+    historique.push([nompage,reponse]);
+	localStorage.setItem("historique",JSON.stringify(historique));
+}
+</script>
 </BODY>
 </HTML>
 
@@ -63,7 +75,9 @@ img{
 
 operation ReponseMultipleAttendu afficheReponse(qst : Question) : String {
 	if(self.previous1.id == qst.id){
-		return "<li> <a href=\""+nettoyer_id(self.next1.id)+".html\">"+self.reponseAttendu+" </li>";
+		if(self.reponseAttendu.isDefined()){
+			return "<li> <a href=\""+nettoyer_id(self.next1.id)+".html\" onclick='setLocalStorage(\""+self.reponseAttendu+"\");'>"+self.reponseAttendu+" </li>";
+		}
 	}
 	return "";
 }

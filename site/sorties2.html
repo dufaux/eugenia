@@ -3,13 +3,13 @@
 <meta charset="UTF-8">
 <style>
 h1{
-border: 1px solid black;
-margin: 100px 200px 10px;
+border-radius: 10px;
+border: 10px ridge #272727;
+margin: 100px 500px 10px;
 text-align: center;
 }
 
 p{
-margin: 100px 200px 10px;
 text-align: center;
 }
 
@@ -35,6 +35,16 @@ img{
   display: block;
   margin: auto;
 }
+
+.questionresume{
+margin: 100px 500px 10px;
+border: 1px solid black;
+border-radius: 10px;
+}
+
+.reponseresume{
+border-top: 1px dashed black;
+}
 </style>
 </head>
 <BODY>
@@ -43,8 +53,44 @@ img{
 
     <img src="image/grave.png" />
 <p>
+
+<div id="liste_resume">
+</div>
 <a href="index.html">retour à l'accueil </a>
 </p>
+
+<script>
+console.log("localStorage!!");
+var i = 0;
+var resume = document.getElementById('liste_resume');
+
+var historique = JSON.parse(localStorage.getItem("historique"));
+
+console.log("LENGTH HISTORIQUE + "+historique.length);
+	
+for (var i = 0; i < historique.length; i++){
+   var question = historique[i][0];
+   var reponse = historique[i][1];
+
+   if(true){
+       var para = document.createElement('p');
+   	   para.innerHTML ="Question: <br> "+question;
+   	   para.className = "questionresume";
+   	   
+   	   
+   	   var parep = document.createElement('p');
+   	   parep.innerHTML ="Reponse: <br> "+reponse;
+   	   parep.className = "reponseresume";
+   	   
+   	   para.appendChild(parep);
+   	   resume.appendChild(para);
+   	   
+       console.log(i);
+       console.log(question);
+       console.log(reponse);
+   }
+}
+</script>
 </BODY>
 </HTML>
 

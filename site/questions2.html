@@ -3,7 +3,8 @@
 <meta charset="UTF-8">
 <style>
 h1{
-border: 1px solid black;
+border-radius: 10px;
+border: 10px ridge #272727;
 margin: 100px 200px 10px;
 text-align: center;
 }
@@ -52,16 +53,28 @@ img{
 
 <h1>Désaltéré, le lutin vous conseil de rebrousser chemin car un troll affamé se trouve plus loin sur le passage. <br> Voulez-vous rebrousser chemin? </h1>
 
-<form action="questions3.html">
-    <input class="bouton" type="submit" value="Oui">
+<form action="questions6.html">
+    <input class="bouton" type="submit" value="Oui" onclick='setLocalStorage("Oui");'>
 </form>
 <form action="sorties2.html">
-    <input class="bouton" type="submit" value="Non">
+    <input class="bouton" type="submit" value="Non" onclick='setLocalStorage("Non");'>
 </form>
 
 <p>
 <a href="index.html">retour à l'accueil </a>
 </p>
+
+<script>
+var nompage = "Désaltéré, le lutin vous conseil de rebrousser chemin car un troll affamé se trouve plus loin sur le passage. <br> Voulez-vous rebrousser chemin?";
+
+function setLocalStorage(reponse){
+    var historique = JSON.parse(localStorage.getItem("historique"));
+    console.log("LENGTH HISTORIQUE + "+historique.length);
+	
+    historique.push([nompage,reponse]);
+	localStorage.setItem("historique",JSON.stringify(historique));
+}
+</script>
 </BODY>
 </HTML>
 

@@ -3,8 +3,9 @@
 <meta charset="UTF-8">
 <style>
 h1{
-border: 1px solid black;
-margin: 100px 200px 10px;
+border-radius: 10px;
+border: 10px ridge #272727;
+margin: 100px 500px 10px;
 text-align: center;
 }
 
@@ -40,10 +41,17 @@ img{
 </head>
 <BODY>
 
-<h1>Vous revenez sur vos pas et retrouvez le carrefour initial </h1>
+<h1>Après une marche éreintante, vous arrivez devant une vielle bicoque abandonnée. <br> Que faites-vous? </h1>
 
 <ul>
 
+<li> <a href="questions4.html" onclick='setLocalStorage("Rentrer dans la maison.");'>Rentrer dans la maison. </li>
+
+
+<li> <a href="sorties4.html" onclick='setLocalStorage("Vous craignez un piège et décidez de vous reposer à l'éxterieur");'>Vous craignez un piège et décidez de vous reposer à l'éxterieur </li>
+
+
+<li> <a href="questions0.html" onclick='setLocalStorage("Vous rebroussez chemin");'>Vous rebroussez chemin </li>
 
 
 
@@ -53,22 +61,24 @@ img{
 
 
 
-
-
-
-
-
-
-
-
-
-<li> <a href="questions0.html">continuer </li>
 
 </ul>
 
+    <img src="image/cabane.jpg" />
 <p>
 <a href="index.html">retour à l'accueil </a>
 </p>
+<script>
+
+var idpage = "questions3";
+var nompage = "Après une marche éreintante, vous arrivez devant une vielle bicoque abandonnée. <br> Que faites-vous?";
+var historique = JSON.parse(localStorage.getItem("historique"));
+function setLocalStorage(reponse){
+    var historique = JSON.parse(localStorage.getItem("historique"));
+    historique.push([nompage,reponse]);
+	localStorage.setItem("historique",JSON.stringify(historique));
+}
+</script>
 </BODY>
 </HTML>
 
